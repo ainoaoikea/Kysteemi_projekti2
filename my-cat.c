@@ -7,16 +7,20 @@
 int main(int argc, char* argv[]){
 
 	
-	FILE *file = fopen(argv[1], "r");
-	if (file == NULL) {
-		printf("my-cat: cannot open file\n");
-		exit(1);
-	}
+	printf("number of files: %d \n", argc-1);
+	for (int i=1; i <= argc-1; i++) {
+		FILE *file = fopen(argv[i], "r");
+		if (file == NULL) {
+			printf("my-cat: cannot open file\n");
+			exit(1);
+		}
 		
-	char buffer[SIZE];
+		char buffer[SIZE];
 	
-	while(fgets(buffer, SIZE-1, file) != NULL) {
-		printf("%s", buffer);
+		while(fgets(buffer, SIZE-1, file) != NULL) {
+			printf("%s", buffer);
+		}
+	
+		fclose(file);
 	}
-	fclose(file);
 }
